@@ -163,6 +163,7 @@ class LinearSoftmaxClassifier():
                 loss, dW = linear_softmax(x_, self.W, y_)
                 reg_loss, dregW = l2_regularization(self.W, reg)
                 loss = loss + reg_loss
+                dW = dW + dregW
                 self.W += -learning_rate * dW
   
             #raise Exception("Not implemented!")
