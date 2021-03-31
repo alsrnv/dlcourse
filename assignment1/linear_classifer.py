@@ -46,6 +46,7 @@ def cross_entropy_loss(probs, target_index):
         return -np.log(probs[target_index])
     else:
         #batch
+        target_index = np.squeeze(target_index)
         return -np.sum(np.log(probs[np.arange(len(probs)), target_index]))
 
 
@@ -72,6 +73,7 @@ def softmax_with_cross_entropy(predictions, target_index):
     if len(predictions.shape) == 1:
         dprediction[target_index] = dprediction[target_index] - 1
     else:
+        target_index = np.squeeze(target_index)
         dprediction[np.arange(len(dprediction)), target_index] -=1
  
     return loss, dprediction
